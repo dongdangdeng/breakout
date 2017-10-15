@@ -16,6 +16,14 @@ const unsigned int Breakout::DEFAULT_BG_COLOR = GetColor
 
 Breakout* Breakout::me;
 
+void Breakout::addList(ChrRef &c) {
+	chr_list.push_back(c);
+}
+
+void Breakout::addScore(int s) {
+	score += s;
+}
+
 void Breakout::init() {
 	me = this;
 	score = 0;
