@@ -122,10 +122,12 @@
     <ClCompile Include="breakout.cpp" />
     <ClCompile Include="chara.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="breakout.hpp" />
     <ClInclude Include="chara.hpp" />
+    <ClInclude Include="player.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

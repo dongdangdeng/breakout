@@ -23,6 +23,9 @@ protected:
 public:
 	Chr();
 	void setPosition(int, int);				//座標を指定
+	void setSize(int, int);					//サイズを指定・暗黙的に当たり判定も指定(キャラクタの表示に画像を使う場合、setImage関数内で自動取得するためこの関数で指定する必要はない)
+		//TODO setImage関数の実装
+	//void SetImage(char*);					
 	void setHitArea(int, int, int, int);	//当たり判定を明示的に指定
 	bool isRemove();						//remove_flagの値を返す
 	virtual ChrType getType() = 0;			//自身のキャラクタタイプを返す

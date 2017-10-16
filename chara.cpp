@@ -14,6 +14,15 @@ void Chr::setPosition(int px, int py) {
 	x = px; y = py;
 }
 
+void Chr::setSize(int w, int h) {
+	width = w; height = h;
+
+	//暗黙的に当たり判定を指定(キャラクタサイズと同じ)
+	hit_x = 0; hit_y = 0;
+	hit_width = w; hit_height = h;	
+}
+
+//当たり判定をキャラクタサイズ(=キャラクタ表示エリア)と変えたい場合に使用
 void Chr::setHitArea(int hx, int hy, int hw, int hh) {
 	hit_x = hx; hit_y = hy;
 	hit_width = hw; hit_height = hh;
@@ -27,6 +36,7 @@ ChrType Chr::hitType() {	//仮想関数
 	return TYPE_NONE;
 }
 
+//当たり判定
 bool Chr::isHit(ChrRef &dst) {
 	int x1 = x + hit_x;
 	int y1 = y + hit_y;
