@@ -1,7 +1,9 @@
 #include "breakout.hpp"
 #include "player.hpp"
+#include "debug.hpp"
 #include <DxLib.h>
 #include <algorithm>
+#include <time.h>
 
 const int Breakout::WIDTH = 640;
 const int Breakout::HEIGHT = 480;
@@ -9,6 +11,7 @@ const char* Breakout::TITLE = "Break out";
 const int Breakout::DEFAULT_BG_COLOR_R = 0;
 const int Breakout::DEFAULT_BG_COLOR_G = 0;
 const int Breakout::DEFAULT_BG_COLOR_B = 0;
+//const bool Breakout::DEBUG_MODE = true;		//デバッグモード切り替え
 const unsigned int Breakout::DEFAULT_BG_COLOR = GetColor
 (
 	Breakout::DEFAULT_BG_COLOR_R, 
@@ -18,6 +21,8 @@ const unsigned int Breakout::DEFAULT_BG_COLOR = GetColor
 
 Breakout* Breakout::me;
 key_t Breakout::key;
+
+Debug debug(true);
 
 Breakout::Breakout() {
 	key.UP = false;
@@ -56,6 +61,7 @@ void Breakout::addScore(int s) {
 }
 
 void Breakout::init() {
+	srand((unsigned int)time(NULL));	//乱数の初期設定
 	me = this;
 	score = 0;
 	bgColor = Breakout::DEFAULT_BG_COLOR;
@@ -70,9 +76,11 @@ void Breakout::init() {
 	// プレイヤー生成
 	ChrRef player(new Player());
 	addList(player);
+
 }
 
 void Breakout::main() {
+	
 	while (!ProcessMessage()) {
 		ClearDrawScreen();
 		// 移動
@@ -80,6 +88,9 @@ void Breakout::main() {
 		// 描画
 		std::for_each(chr_list.begin(), chr_list.end(), [](ChrRef& c) {c->draw(); });
 		
+		//デバッグメッセージ出力
+		debug.draw();
+
 		ScreenFlip();
 		// 消すべきキャラクタの消去
 		auto end = std::remove_if(chr_list.begin(), chr_list.end(), [](ChrRef& c) {return c->isRemove(); });

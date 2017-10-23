@@ -1,7 +1,5 @@
 #include "chara.hpp"
 
-
-
 void Chr::remove() {
 	remove_flag = true;
 }
@@ -26,6 +24,10 @@ void Chr::setSize(int w, int h) {
 void Chr::setHitArea(int hx, int hy, int hw, int hh) {
 	hit_x = hx; hit_y = hy;
 	hit_width = hw; hit_height = hh;
+}
+
+void Chr::setColor(unsigned int c){
+	color = c;
 }
 
 bool Chr::isRemove() {

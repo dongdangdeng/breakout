@@ -20,9 +20,11 @@ private:
 	std::list<ChrRef> chr_list;		//ゲーム中のキャラクターを登録するリスト
 	int score;
 	static key_t key;
+	//static bool const DEBUG_MODE;	//デバックモード
 protected:
 public:
-	static const int WIDTH, HEIGHT;
+	static const int WIDTH, HEIGHT;	//画面全体のサイズ
+	
 	static const int DEFAULT_BG_COLOR_R, DEFAULT_BG_COLOR_G, DEFAULT_BG_COLOR_B;
 	static const unsigned int DEFAULT_BG_COLOR;
 	static const char* TITLE;	//ウィンドウタイトル名
@@ -33,8 +35,7 @@ public:
 	void addList(ChrRef &);		//キャラクタリストに追加
 	void addScore(int);			//スコアの増加
 	void init();				//ゲームの初期化
-	void main();
-	void end();
+	void main();				//メインルーチン
+	void end();					//終了処理
 };
 #endif // !BREAKOUT_HPP
-
